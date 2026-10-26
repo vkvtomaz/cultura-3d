@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="light" data-finish="gold">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f3f0e7" />
+    <meta
+      name="description"
+      content="Cultura 3D: peças autorais, chaveiros personalizados e projetos sob encomenda. Conte sua ideia e vamos pensar juntos na próxima forma."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:title" content="Cultura 3D — sua ideia, fora da tela." />
+    <meta
+      property="og:description"
+      content="Impressão 3D, criações autorais e projetos sob encomenda. Feito camada por camada."
+    />
+    <title>Cultura 3D</title>
+    <link rel="icon" href="./assets/images/favicon-v2-32.png" type="image/png" sizes="32x32" />
+    <link rel="icon" href="./assets/images/favicon-v2-64.png" type="image/png" sizes="64x64" />
+    <link rel="apple-touch-icon" href="./assets/images/favicon-v2-180.png" sizes="180x180" />
+    <link rel="stylesheet" href="./assets/fonts/fonts.css" />
+    <link rel="stylesheet" href="./src/styles.css" />
+    <!-- Aplica o tema antes da primeira pintura para evitar flashes. -->
+    <script>
+      try {
+        const stored = localStorage.getItem("cultura-theme");
+        document.documentElement.dataset.theme =
+          stored === "dark" || stored === "light"
+            ? stored
+            : matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light";
+      } catch {}
+    </script>
+    <script type="module" src="./src/main.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <!-- Navegação principal e controles de aparência. -->
+    <header class="site-header">
+      <div class="header-inner wrap">
+        <a class="wordmark" href="#inicio" aria-label="Cultura 3D, início"
+          >cultura<span>3d.</span></a
+        >
+        <nav class="desktop-nav" aria-label="Navegação principal">
+          <a href="#criacoes">O que criamos</a><a href="#processo">O processo</a
+          ><a href="#encomendar">Sua ideia</a>
+        </nav>
+        <div class="header-actions">
+          <button
+            class="theme-toggle"
+            type="button"
+            aria-label="Ativar modo escuro"
+            aria-pressed="false"
+          >
+            <span data-theme-label>Escuro</span
+            ><span class="theme-symbol" aria-hidden="true"></span>
+          </button>
+          <a class="header-cta" href="#encomendar"
+            >Vamos criar <span aria-hidden="true">↗︎</span></a
+          >
+          <button
+            class="menu-toggle"
+            type="button"
+            aria-label="Abrir menu"
+            aria-expanded="false"
+            aria-controls="mobile-nav"
+          >
+            <span></span><span></span>
+          </button>
+        </div>
+      </div>
+      <nav
+        id="mobile-nav"
+        class="mobile-nav wrap"
+        aria-label="Navegação no celular"
+        hidden
+      >
+        <a href="#criacoes">O que criamos</a
+        ><a href="#filme">Da tela para a mão</a
+        ><a href="#processo">O processo</a
+        ><a href="#encomendar">Encomendar uma peça</a>
+      </nav>
+    </header>
+
+    <main id="conteudo">
+      <!-- Apresentação da marca e visualizador interativo. -->
+      <section class="hero wrap" id="inicio" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">
+            <span class="status-dot" aria-hidden="true"></span>Estúdio de
+            impressão 3D
+          </p>
+          <h1 id="hero-title">Sua ideia,<br />fora da<br /><em>tela.</em></h1>
+          <p class="hero-description">
+            Peças autorais, chaveiros e projetos sob encomenda. Do primeiro
+            rascunho ao objeto que você segura na mão.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#encomendar"
+              >Quero criar uma peça <span aria-hidden="true">↗︎</span></a
+            ><a class="text-link" href="#criacoes">Explorar possibilidades</a>
+          </div>
+          <p class="hero-footnote">
+            Uma ideia sua. Um jeito nosso de dar forma.
+          </p>
+        </div>
+        <div
+          class="object-stage"
+          aria-label="Modelo tridimensional interativo do dragão"
+        >
+          <div class="object-shadow" aria-hidden="true"></div>
+          <img
+            class="object-poster"
+            src="./assets/images/dragao-recortado.png"
+            width="1086"
+            height="1448"
+            alt="Dragão preto impresso em 3D, com asas abertas e base ornamentada por caveiras."
+            fetchpriority="high"
+          />
+          <canvas
+            id="hero-canvas"
+            role="img"
+            aria-label="Modelo 3D do dragão. Arraste ou use as setas para girar. Home retorna à vista inicial."
+            aria-describedby="object-help"
+            tabindex="0"
+            hidden
+          ></canvas>
+          <div class="object-caption">
+            <span>Dragão, detalhe em camadas.</span>
+          </div>
+          <span class="object-hint" id="object-help"
+            >Mova o cursor · arraste para girar ↔︎</span
+          >
+        </div>
+        <div
+          class="material-picker"
+          role="group"
+          aria-label="Simulação de acabamento do dragão"
+        >
+          <span>Simular acabamento.</span>
+          <button
+            type="button"
+            class="material-swatch red"
+            data-color="#bf5148"
+            data-finish="red"
+            data-color-name="Vermelho"
+            aria-label="Simular acabamento vermelho"
+            aria-pressed="false"
+          ></button>
+          <button
+            type="button"
+            class="material-swatch bronze"
+            data-color="#bb8b67"
+            data-finish="gold"
+            data-color-name="Dourado"
+            aria-label="Simular acabamento dourado"
+            aria-pressed="true"
+          ></button>
+          <button
+            type="button"
+            class="material-swatch silver"
+            data-color="#bfc7cf"
+            data-finish="silver"
+            data-color-name="Prata"
+            aria-label="Simular acabamento prata"
+            aria-pressed="false"
+          ></button>
+          <button
+            type="button"
+            class="material-swatch blue"
+            data-color="#6389bd"
+            data-finish="blue"
+            data-color-name="Azul cerâmica"
+            aria-label="Simular acabamento azul cerâmica"
+            aria-pressed="false"
+          ></button>
+          <button
+            type="button"
+            class="material-swatch yellow"
+            data-color="#e5bd4f"
+            data-finish="yellow"
+            data-color-name="Amarelo"
+            aria-label="Simular acabamento amarelo"
+            aria-pressed="false"
+          ></button>
+          <span class="material-name" aria-live="polite">Dourado</span>
+        </div>
+      </section>
+
+      <div class="manifesto-strip">
+        <div class="wrap">
+          <span>Desenho <i>+</i> matéria <i>+</i> intenção</span
+          ><span>Uma ideia. Muitas formas.</span
+          ><span>Feito camada por camada <i>↙︎</i></span>
+        </div>
+      </div>
+
+      <section
+        class="creations wrap section-space"
+        id="criacoes"
+        aria-labelledby="creations-title"
+      >
+        <div class="section-intro">
+          <p class="eyebrow">Um universo de possibilidades</p>
+          <div class="section-heading">
+            <h2 id="creations-title">
+              Pequenas peças.<br /><em>Muitas histórias.</em>
+            </h2>
+          </div>
+        </div>
+        <div class="creation-grid">
+          <article class="creation-item creation-featured">
+            <div class="comparison" data-comparison style="--comparison: 50%">
+              <img
+                class="comparison-after"
+                src="./assets/images/depois1.jpeg"
+                width="576"
+                height="1025"
+                alt="Depois: porta-lápis de coruja dourado, com canetas e pincéis."
+                loading="lazy"
+                draggable="false"
+              />
+              <img
+                class="comparison-before"
+                src="./assets/images/antes1.jpeg"
+                width="768"
+                height="1376"
+                alt="Antes: desenho a lápis de um porta-lápis em forma de coruja."
+                loading="lazy"
+                draggable="false"
+              />
+              <span class="comparison-label comparison-label-before"
+                >Antes</span
+              >
+              <span class="comparison-label comparison-label-after"
+                >Depois</span
+              >
+              <div class="comparison-divider" aria-hidden="true">
+                <span>↔︎</span>
+              </div>
+              <span class="comparison-hint" id="comparison-help-1"
+                >↔︎ Arraste para comparar</span
+              >
+              <input
+                class="comparison-range"
+                type="range"
+                min="0"
+                max="100"
+                value="50"
+                step="1"
+                aria-label="Comparar o desenho e a peça do porta-lápis de coruja"
+                aria-describedby="comparison-help-1"
+                aria-valuetext="50% antes e 50% depois"
+              />
+            </div>
+            <div class="creation-caption">
+              <h3>Do traço ao objeto.</h3>
+            </div>
+            <p>Um porta-lápis de coruja, do desenho à peça.</p>
+          </article>
+          <article class="creation-item creation-offset">
+            <p class="creation-intro">
+              Do desenho à peça em 3D. Arraste para os lados e descubra como
+              cada ideia ganha forma.
+            </p>
+            <div class="comparison" data-comparison style="--comparison: 50%">
+              <img
+                class="comparison-after"
+                src="./assets/images/depois2.jpeg"
+                width="576"
+                height="1025"
+                alt="Depois: chaveiro de coruja dourado com argola e corrente metálicas."
+                loading="lazy"
+                draggable="false"
+              />
+              <img
+                class="comparison-before"
+                src="./assets/images/antes2.jpeg"
+                width="768"
+                height="1376"
+                alt="Antes: esboço a lápis de um chaveiro em forma de coruja."
+                loading="lazy"
+                draggable="false"
+              />
+              <span class="comparison-label comparison-label-before"
+                >Antes</span
+              >
+              <span class="comparison-label comparison-label-after"
+                >Depois</span
+              >
+              <div class="comparison-divider" aria-hidden="true">
+                <span>↔︎</span>
+              </div>
+              <span class="comparison-hint" id="comparison-help-2"
+                >↔︎ Arraste para comparar</span
+              >
+              <input
+                class="comparison-range"
+                type="range"
+                min="0"
+                max="100"
+                value="50"
+                step="1"
+                aria-label="Comparar o desenho e a peça do chaveiro de coruja"
+                aria-describedby="comparison-help-2"
+                aria-valuetext="50% antes e 50% depois"
+              />
+            </div>
+            <div class="creation-caption">
+              <h3>Da ideia ao detalhe.</h3>
+            </div>
+            <p>Um chaveiro de coruja que ganha forma.</p>
+          </article>
+        </div>
+        <div class="bespoke-line">
+          <span class="asterisk" aria-hidden="true">✳︎</span>
+          <h3>
+            Não encontrou sua ideia por aqui?<br /><span
+              >Ótimo. Vamos começar por ela.</span
+            >
+          </h3>
+          <a class="text-link" href="#encomendar"
+            >Tenho um projeto em mente <span aria-hidden="true">↗︎</span></a
+          >
+        </div>
+      </section>
+
+      <section
+        class="film-section section-space"
+        id="filme"
+        aria-labelledby="film-title"
+      >
+        <div class="wrap film-layout">
+          <div class="film-heading">
+            <p class="eyebrow">Imaginar é só o começo</p>
+            <h2 id="film-title">Da imaginação<br /><em>para a sua mão.</em></h2>
+            <p>
+              Uma ideia pode começar numa tela.<br />O próximo passo é dar forma
+              a ela.
+            </p>
+            <a class="text-link" href="#encomendar"
+              >Conta sua ideia <span aria-hidden="true">↗︎</span></a
+            >
+          </div>
+          <figure class="film-media">
+            <div class="film-frame">
+              <video
+                id="brand-film"
+                width="1080"
+                height="1920"
+                muted
+                autoplay
+                loop
+                playsinline
+                tabindex="0"
+                role="button"
+                aria-pressed="false"
+                preload="none"
+                data-src="./assets/videos/cultura-imaginacao.mp4"
+                aria-label="Filme: uma personagem atravessa a tela com o braço e pega um brinquedo. Clique ou pressione Espaço para reproduzir ou pausar."
+                aria-describedby="film-caption"
+              ></video>
+              <div class="film-loading" aria-hidden="true">
+                <span>cultura<span>3d.</span></span
+                ><small>Uma ideia prestes a sair da tela.</small>
+              </div>
+            </div>
+            <figcaption class="film-caption" id="film-caption">
+              Um pequeno filme sobre tornar ideias possíveis.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section
+        class="process wrap section-space"
+        id="processo"
+        aria-labelledby="process-title"
+      >
+        <div class="process-intro">
+          <p class="eyebrow">Feito junto com você</p>
+          <h2 id="process-title">
+            Do “e se...”<br /><em>ao “ficou pronto”.</em>
+          </h2>
+          <p>
+            Você não precisa chegar com tudo resolvido. Uma referência, um
+            desenho ou uma boa conversa já dão um ponto de partida.
+          </p>
+          <a class="text-link" href="#encomendar"
+            >Vamos conversar <span aria-hidden="true">↗︎</span></a
+          >
+        </div>
+        <ol class="process-list">
+          <li>
+            <span class="step-number">01</span>
+            <div>
+              <h3>Conta sua ideia.</h3>
+              <p>
+                O que você quer criar, para quem e para quê. Referências são
+                bem-vindas.
+              </p>
+            </div>
+          </li>
+          <li>
+            <span class="step-number">02</span>
+            <div>
+              <h3>A gente acerta a forma.</h3>
+              <p>
+                Conversamos sobre tamanho, quantidade, cores e viabilidade. Você
+                recebe a proposta antes de seguir.
+              </p>
+            </div>
+          </li>
+          <li>
+            <span class="step-number">03</span>
+            <div>
+              <h3>Camada por camada.</h3>
+              <p>
+                Com os detalhes aprovados, a ideia começa a ganhar corpo na
+                impressão.
+              </p>
+            </div>
+          </li>
+          <li>
+            <span class="step-number">04</span>
+            <div>
+              <h3>Os últimos detalhes.</h3>
+              <p>
+                Conferimos o acabamento e combinamos a entrega. Agora a ideia
+                cabe na sua mão.
+              </p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section
+        class="order-section section-space"
+        id="encomendar"
+        aria-labelledby="order-title"
+      >
+        <div class="wrap order-grid">
+          <div class="order-copy">
+            <p class="eyebrow">Sua próxima criação começa aqui</p>
+            <h2 id="order-title">O que você<br /><em>tem em mente?</em></h2>
+            <p>
+              Conta um pouco da ideia. A conversa continua no WhatsApp, onde
+              você também pode enviar fotos e referências.
+            </p>
+            <a
+              class="direct-contact"
+              data-whatsapp-link
+              href="https://wa.me/5511988332882"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Prefere falar direto?<br /><strong
+                >(11) 98833-2882 <span aria-hidden="true">↗︎</span></strong
+              ></a
+            >
+          </div>
+          <form id="order-form" class="order-form">
+            <div class="field">
+              <label for="order-name">Como podemos te chamar?</label
+              ><input
+                id="order-name"
+                name="name"
+                type="text"
+                autocomplete="given-name"
+                required
+                maxlength="80"
+                placeholder="Seu nome"
+              />
+            </div>
+            <div class="field">
+              <label for="order-idea">Conta sua ideia.</label
+              ><textarea
+                id="order-idea"
+                name="idea"
+                rows="4"
+                required
+                maxlength="2000"
+                placeholder="Uma peça autoral, chaveiros para um evento, um presente..."
+                aria-describedby="idea-help"
+              ></textarea
+              ><small id="idea-help"
+                >Pode começar pelo que você já imaginou.</small
+              >
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="order-quantity">Quantas peças, mais ou menos?</label
+                ><input
+                  id="order-quantity"
+                  name="quantity"
+                  type="number"
+                  inputmode="numeric"
+                  min="1"
+                  max="10000"
+                  step="1"
+                  value="1"
+                  required
+                />
+              </div>
+              <div class="field">
+                <label for="order-deadline"
+                  >Para quando? <span>(opcional)</span></label
+                ><input
+                  id="order-deadline"
+                  name="deadline"
+                  type="text"
+                  maxlength="100"
+                  placeholder="Uma data ou sem pressa"
+                />
+              </div>
+            </div>
+            <button class="button button-primary order-submit" type="submit">
+              Continuar no WhatsApp <span aria-hidden="true">↗︎</span>
+            </button>
+            <p class="form-note">
+              A mensagem será aberta para você revisar e enviar. Preencher este
+              formulário não confirma um pedido.
+            </p>
+            <p
+              id="form-feedback"
+              class="form-feedback"
+              role="status"
+              aria-live="polite"
+            ></p>
+            <a
+              id="whatsapp-fallback"
+              class="text-link"
+              href="https://wa.me/5511988332882"
+              target="_blank"
+              rel="noopener noreferrer"
+              hidden
+              >Abrir conversa no WhatsApp <span aria-hidden="true">↗︎</span></a
+            >
+          </form>
+        </div>
+      </section>
+
+      <section class="faq wrap section-space" aria-labelledby="faq-title">
+        <div>
+          <p class="eyebrow">Antes de começar</p>
+          <h2 id="faq-title">Algumas<br /><em>boas perguntas.</em></h2>
+        </div>
+        <div class="faq-list">
+          <details>
+            <summary>
+              Preciso ter um arquivo 3D pronto?<span aria-hidden="true">+</span>
+            </summary>
+            <p>
+              Você pode começar com uma imagem, um desenho ou uma descrição. Na
+              conversa, avaliamos a viabilidade e o que será necessário para
+              desenvolver a peça.
+            </p>
+          </details>
+          <details>
+            <summary>
+              Dá para escolher cores e tamanho?<span aria-hidden="true">+</span>
+            </summary>
+            <p>
+              Esses detalhes fazem parte do projeto. As opções dependem do
+              desenho, do uso da peça e dos materiais disponíveis no momento do
+              orçamento.
+            </p>
+          </details>
+          <details>
+            <summary>
+              Posso encomendar só uma peça?<span aria-hidden="true">+</span>
+            </summary>
+            <p>
+              Conte a quantidade que você tem em mente, mesmo que seja uma
+              unidade. Avaliamos cada pedido conforme o projeto.
+            </p>
+          </details>
+          <details>
+            <summary>
+              Como são definidos o valor e o prazo?<span aria-hidden="true"
+                >+</span
+              >
+            </summary>
+            <p>
+              Tamanho, quantidade, complexidade e acabamento entram na proposta.
+              O valor e o prazo são combinados com você antes de iniciar a
+              produção.
+            </p>
+          </details>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <div class="footer-top">
+          <a
+            class="wordmark"
+            href="#inicio"
+            aria-label="Cultura 3D, voltar ao início"
+            >cultura<span>3d.</span></a
+          >
+          <p>Uma ideia sua.<br />Um mundo de formas.</p>
+          <a
+            data-whatsapp-link
+            href="https://wa.me/5511988332882"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Vamos criar alguma coisa? <span aria-hidden="true">↗︎</span></a
+          >
+        </div>
+        <div class="footer-bottom">
+          <p>
+            © <span data-year>2026</span> Cultura 3D — Todos os direitos reservados.
+            Desenvolvido por
+            <a href="https://github.com/vkvtomaz" target="_blank" rel="noopener noreferrer">Vinicius Tomaz</a>.
+          </p>
+        </div>
+      </div>
+    </footer>
+    <noscript
+      ><p class="noscript-note">
+        Você pode explorar a página sem JavaScript. Para encomendas,
+        <a href="https://wa.me/5511988332882"
+          >fale com a Cultura 3D pelo WhatsApp</a
+        >.
+      </p></noscript
+    >
+  </body>
+</html>

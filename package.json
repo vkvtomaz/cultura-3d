@@ -1,0 +1,17 @@
+{
+  "name": "cultura-3d",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Landing page da Cultura 3D — impressão, peças autorais e encomendas.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "start": "node scripts/dev.mjs",
+    "check": "node --check src/main.js && node --check src/faq.js && node --check src/comparisons.js && node --check src/dragon-viewer.js && node --check src/dragon-model.js && node --check src/contact.js && node --check scripts/dev.mjs && node --check scripts/build.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "build": "node scripts/build.mjs"
+  }
+}
