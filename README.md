@@ -1,6 +1,6 @@
 # 🧊 Cultura 3D — Landing Page
 
-[![Vercel](https://img.shields.io/badge/Deploy-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](#)
+[![Vercel](https://img.shields.io/badge/Deploy-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://cultura-3d-landing.vercel.app/)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
@@ -14,7 +14,7 @@ O projeto combina **HTML semântico, CSS responsivo e JavaScript modular**, com 
 
 ## Demonstração
 
-Acesse a versão publicada do projeto: 👉 (#)
+Acesse a versão publicada do projeto: 👉 (https://cultura-3d-landing.vercel.app/)
 
 ## Pré-visualização
 
